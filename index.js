@@ -1,14 +1,25 @@
-//Make the computer play
+let playButton = document.getElementById('play-button');
+let gameChoices = document.getElementsByClassName('big-style');
+playButton.addEventListener('click', enterGame);
 
-function capitalize(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+// After clicking "PLAY", player is taken to the game (RPS view)
+function enterGame() {
+  playButton.style.display = 'none';
+  Array.from(gameChoices).forEach( (choice) => {
+    choice.style.display = 'block';
+  });
 }
 
-function getComputerChoice() {
 
+
+
+
+
+//Make the computer play
+
+function getComputerChoice() {
     const choices = ['rock', 'paper', 'scissors'];
     return choices[Math.floor(Math.random() * 3)];
-
 }
 
 let playerScore = 0;
@@ -16,8 +27,8 @@ let computerScore = 0;
 
 function playRound(playerSelection, computerSelection) {
 
-    playerSelection = capitalize(playerSelection);
-    computerSelection = capitalize(computerSelection);
+    playerSelection = playerSelection;
+    computerSelection = computerSelection;
 
     if ( playerSelection === 'Rock' && computerSelection === 'Scissors' || 
          playerSelection === 'Paper' && computerSelection === 'Rock' || 
@@ -37,15 +48,11 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
 
-    for (let i = 0; i < 5; i++) {
+    const playerSelection = document.querySelector('button');
+    const computerSelection = getComputerChoice();
 
-        const playerSelection = prompt("Rock, paper, or scissors?");
-        const computerSelection = getComputerChoice();
-
-        console.log(playRound(playerSelection, computerSelection));
-        console.log(`The score is You: ${playerScore} to Comp: ${computerScore}.`);
-
-    }
+    console.log(playRound(playerSelection, computerSelection));
+    console.log(`The score is You: ${playerScore} to Comp: ${computerScore}.`);
 
     if ( playerScore > computerScore ) {
         return `You win ${playerScore} to ${computerScore}!`
