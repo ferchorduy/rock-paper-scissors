@@ -8,14 +8,36 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
-  <div class="container-main">
-    <button id="play-button" class="main-style">PLAY</button>
+  <div id="container-intro">
+    <input type="text" id="name-input" placeholder="enter name" autocomplete="off" maxlength="10">
+    <input type="submit" id="play-button" class="main-style" value="PLAY">
+  </div>
+  <div id="container-main">
+    <div id="container-top">
+      <div id="player-name" class="main-style top"></div>
+      <div class="main-style larger-text top invisible"></div>
+      <div id="global-score" class="main-style top invisible">0 : 0</div>
+      <div class="main-style larger-text top invisible"></div>
+      <div id="computer-name" class="main-style top">(comp)</div>
+    </div>
+    <div id="container-score">
+      <div id="player-choice" class="main-style larger-text top"></div>
+      <div id="player-score" class="main-style top larger-text">0</div>
+      <div class="main-style top larger-text">:</div>
+      <div id="computer-score" class="main-style top larger-text">0</div>
+      <div id="computer-choice" class="main-style larger-text top"></div>
+    </div>
+    <div id="container-game">
+      <button id="rock" class="game-choices">{R}</button>
+      <button id="paper" class="game-choices">[P]</button>
+      <button id="scissors" class="game-choices">\S/</button>
+    </div>
+    <div id="container-bottom">
+      <div id="game-updates" class="main-style">
+        choose wisely
+      </div>
+    </div>
   </div>
   <script src="index.js"></script>
-  <div class="container-game">
-    <button class="big-style hidden">R</button>
-    <button class="big-style hidden">P</button>
-    <button class="big-style hidden">S</button>
-  </div>
 </body>
 </html>
