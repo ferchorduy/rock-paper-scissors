@@ -1,5 +1,3 @@
-// CONTAINS BUG: WILL START PLAY IF WHEN ENTERING NAME, "R || P || S" ARE ENTERED. HAVEN'T FIGURED OUT HOW TO FIX
-
 
 // variables needed to start game
 const playButton = document.getElementById('play-button');
@@ -29,6 +27,8 @@ function enterGame() {
       playerName.textContent = `(${nameInput.value})`; // takes name input from user and adds it to name shown in game
     }
 
+    document.addEventListener('keydown', game); // resolves issue of playing game while typing in name in landing screen if name has r, s, or p
+
 }
 
 // get computer's choice in the round
@@ -37,6 +37,7 @@ function getComputerChoice() {
   return choices[Math.floor(Math.random() * 3)];
 }
 
+// plays round based on input with click or typing r, s, or p keys. also displays outcome of that round
 function playRound(e) {
 
   computerChoiceValue = getComputerChoice();
@@ -92,11 +93,12 @@ let computerScoreValue = 0;
 let playerChoiceValue = '';
 let computerChoiceValue = '';
 
+// this event listener is for clicking R, P, or S on screen
 rock.addEventListener('click', game);
 paper.addEventListener('click', game);
 scissors.addEventListener('click', game);
-document.addEventListener('keydown', game);
 
+// this changes the score and choices players chose after each round
 function changeUI() {
 
   playerScore.textContent = playerScoreValue;
@@ -124,6 +126,7 @@ function changeUI() {
 
 }
 
+// this keeps track of the score of the game and ends the game when a player reaches score of 5
 function game(e) {
 
   playRound(e);
@@ -133,12 +136,15 @@ function game(e) {
 
   if (playerScoreValue === 5 || computerScoreValue === 5) {
     // find out how to make keydown disabled (returns error) or handle error due to playRound toggled to false
-    containerMain.style.pointerEvents = 'none'
+    containerMain.style.pointerEvents = 'none';
     playRound = false;
     if (playerScoreValue > computerScoreValue) {
-      gameUpdates.textContent = 'You win!'
+      gameUpdates.textContent += " You win! Refresh to play again.";
+    } else {
+      gameUpdates.textContent += " You lose! Refresh to play again.";
     }
   }
+
   // Code to make multiple games with a global score. Will come back to it when I learn more, I can't figure it out currently  
   //   if (playerScoreValue > computerScoreValue) {
   //     globalPlayerScoreValue++;
